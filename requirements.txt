@@ -1,0 +1,11 @@
+asgiref==3.11.1
+diff-match-patch==20241021
+Django==6.0.3
+django-cors-headers==4.9.0
+django-import-export==4.4.0
+django-unfold==0.86.1
+djangorestframework==3.17.0
+pillow==12.1.1
+pyttsx3==2.99
+sqlparse==0.5.5
+tablib==3.9.0
