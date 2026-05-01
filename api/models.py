@@ -65,7 +65,7 @@ class Property(models.Model):
 
     # Property Details
     property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES)
-    bhk = models.CharField(max_length=20, choices=BHK_CHOICES ,null=True,blank=True)
+    bhk = models.CharField(max_length=20,null=True,blank=True)
 
 
 
