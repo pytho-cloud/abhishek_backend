@@ -141,3 +141,25 @@ class PropertyUser(models.Model):
 
 
 
+class ContactModel(models.Model):
+    templates_name  = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255,null=True)
+    description = models.TextField()
+    email = models.CharField(max_length=255,null=True)
+    service_hrs = models.CharField(max_length=255,null=True)
+    is_active = models.BooleanField(default=False)
+
+
+
+    def __str__(self):
+        return self.templates_name
+    
+
+
+
+
+
+
+
+class Blog:
+    pass

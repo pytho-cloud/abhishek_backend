@@ -7,8 +7,12 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('properties/', PropertyFilter.as_view() ),
+    path('properties/<int:id>', PropertyFilter.as_view() ),
+
     path('login', UserRegistrationsView.as_view() ),
     path('search-click/', UserClickSearchProperty.as_view() ),
+    path('get-contact/', ContactAPIView.as_view() ),
+
 
 
 

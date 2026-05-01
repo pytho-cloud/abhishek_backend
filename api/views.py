@@ -2,7 +2,7 @@ from django.shortcuts import render
 from  rest_framework.views import APIView
 from  rest_framework.response import Response
 from rest_framework import status
-from .models import User ,Property ,PropertyUser
+from .models import User ,Property ,PropertyUser ,ContactModel
 import secrets
 # Create your views here.
 
@@ -42,7 +42,7 @@ import secrets
 
 class PropertyFilter(APIView):
 
-    def get(self, request):
+    def get(self, request,id =None):
         """
         GET /api/properties/ 
         Optional query params: bhk, locations, price_min, price_max
@@ -52,7 +52,8 @@ class PropertyFilter(APIView):
         price_min = request.query_params.get('price_min')
         price_max = request.query_params.get('price_max')
 
-        
+        if id :
+            print("coming coming id ")
 
         query = Property.objects.all()
 
@@ -241,6 +242,20 @@ class UserClickSearchProperty(APIView):
 
 
 
+class ContactAPIView(APIView):
 
+    def get(self,request):
+
+        contact = ContactModel.objects.filter(is_active = True).values()
+        print(contact,"ddddddddd")
+
+        if not contact:
+            return Response({
+                "data" : []
+            })
+
+        return Response({
+            "data" : list(contact)
+        })
 
 

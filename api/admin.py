@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from .models import User, Property, PropertyUser
+from .models import User, Property, PropertyUser ,ContactModel
 
 
 # -------------------- USER ADMIN --------------------
@@ -76,4 +76,25 @@ class PropertyUserAdmin(ImportExportModelAdmin):
 
     list_filter = (
         "created_at",
+    )
+
+
+
+@admin.register(ContactModel)
+class ContactModelAdmin(ImportExportModelAdmin):
+
+    list_display = (
+        "id",
+        "templates_name",
+        "phone_number",
+        "email",
+        "service_hrs",
+        "is_active",
+        # "created_at",
+    )
+
+ 
+
+    list_filter = (
+        "templates_name",
     )
