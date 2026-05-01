@@ -93,6 +93,13 @@ class Property(models.Model):
         ordering = ["-created_at"]
 
 
+class PropertyImages(models.Model):
+    property = models.ForeignKey(
+        Property,
+        on_delete=models.CASCADE,
+        related_name="images"
+    )
+    property_image = models.ImageField(upload_to="properties/" ,null=True,blank=True)
 
 
 class PropertyUser(models.Model):

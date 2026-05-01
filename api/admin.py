@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from .models import User, Property, PropertyUser ,ContactModel
+from .models import User, Property, PropertyUser ,ContactModel ,PropertyImages
 
 
 # -------------------- USER ADMIN --------------------
@@ -26,11 +26,25 @@ class UserAdmin(ImportExportModelAdmin):
         "created_at",
     )
 
+class PropertyImagesInline(admin.TabularInline):
+    model = PropertyImages
+    extra = 1
 
+
+# ✅ Property admin (with image upload)
+
+
+
+# (Optional) separate view for images
+@admin.register(PropertyImages)
+class PropertyImagesAdmin(admin.ModelAdmin):
+    list_display = ("id", "property", "property_image")
+  # how many empty forms show
 # -------------------- PROPERTY ADMIN --------------------
 
 @admin.register(Property)
 class PropertyAdmin(ImportExportModelAdmin):
+    inlines = [PropertyImagesInline]  
 
     list_display = (
         "id",
@@ -54,6 +68,9 @@ class PropertyAdmin(ImportExportModelAdmin):
     )
 
 
+# @admin.register(PropertyImages)
+# class PropertyImagesAdmin(admin.ModelAdmin):
+#     list_display = ("id", "property", "property_image")
 # -------------------- PROPERTY USER ADMIN --------------------
 
 @admin.register(PropertyUser)
