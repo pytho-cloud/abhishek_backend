@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from .models import User, Property, PropertyUser ,ContactModel ,PropertyImages
+from .models import User, Property, PropertyUser ,ContactModel ,PropertyImages ,Blog
 
 
 # -------------------- USER ADMIN --------------------
@@ -115,3 +115,8 @@ class ContactModelAdmin(ImportExportModelAdmin):
     list_filter = (
         "templates_name",
     )
+
+
+
+
+admin.site.register(Blog)

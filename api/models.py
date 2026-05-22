@@ -168,5 +168,27 @@ class ContactModel(models.Model):
 
 
 
-class Blog:
-    pass
+class Blog(models.Model):
+    blog_heading = models.CharField()
+    blog_image = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.blog_heading
+    
+
+
+
+class Contact(models.Model):
+
+    contact_name = models.CharField(max_length=255)
+    contact_phone_number = models.CharField(max_length=10)
+    contact_date = models.DateTimeField(auto_now_add=True)
+    contact_address = models.TextField(null=True)
+
+
+
+    def __str__(self):
+
+        return str(self.contact_name) + str(self.contact_phone_number)
