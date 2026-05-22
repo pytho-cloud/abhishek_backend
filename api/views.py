@@ -2,8 +2,8 @@ from django.shortcuts import render
 from  rest_framework.views import APIView
 from  rest_framework.response import Response
 from rest_framework import status
-from .models import User ,Property ,PropertyUser
-import secrets
+from .models import User ,Property ,PropertyUser ,ContactModel ,Blog
+import secrets 
 # Create your views here.
 
 
@@ -241,6 +241,70 @@ class UserClickSearchProperty(APIView):
 
 
 
+class ContactAPIView(APIView):
+
+    def get(self,request):
+
+        contact = ContactModel.objects.filter(is_active = True).values()
+        print(contact,"ddddddddd")
+
+        if not contact:
+            return Response({
+                "data" : []
+            })
+
+        return Response({
+            "data" : list(contact)
+        })
 
 
 
+
+class BlodAPIView(APIView):
+    def get(self,request):
+        id = request.GET.get('id')
+        if not id :
+            data  = Blog.objects.all().order_by('-created_date').values()
+            print("tthis is mydata " , data)
+            return  Response({
+                "data" : list(data),
+                "status" : 200
+            })
+        data = Blog.objects.filter(id = id).values()
+        return Response({
+            "data" : list(data)
+        })
+
+
+
+
+class ContactAPIView(APIView):
+
+    def post(self, request):
+
+        data = request.data 
+        print("this is data coming " , data)
+        contact_name = data.get("contact_name")
+        contact_phone_number = data.get("contact_phone_number")
+        contact_address = data.get("contact_address")
+
+        # if not all([contact_name,contact_phone_number,contact_address]):
+        #     return Response({
+        #         "message" : "Something Went Wrong "
+        #     })
+
+        query =  ContactModel.objects.create(
+            contact_name = contact_name ,
+            contact_phone_number =  contact_phone_number,
+            contact_address = contact_address
+
+        )
+
+        query.save()
+
+
+        return Response({
+            "message" :"We will get touch you as soon as possible"
+        })
+
+        

@@ -9,6 +9,14 @@ urlpatterns = [
     path('properties/', PropertyFilter.as_view() ),
     path('login', UserRegistrationsView.as_view() ),
     path('search-click/', UserClickSearchProperty.as_view() ),
+    path('get-contact/', ContactAPIView.as_view() ),
+    path('get-blog/', BlodAPIView.as_view() ),
+    path('post-contact/', ContactAPIView.as_view() ),
+
+    # path('get-blog/', BlodAPIView.as_view() ),
+
+
+
 
 
 
